@@ -7,7 +7,7 @@
   $currentUser = User::isLogged(); // User Object / false 
 
  
-  print_r($currentUser);
+  //print_r($currentUser);
 
  
   // conectando a BBDD
