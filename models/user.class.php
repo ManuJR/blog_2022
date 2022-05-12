@@ -156,7 +156,11 @@
             return false;
         }
 
-        
+        public function logout(){
+            unset($_SESSION);
+            setcookie(session_name(), "", time()-1);
+            session_destroy();
+        }
 
     }
     

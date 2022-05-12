@@ -22,6 +22,9 @@
 
         public function signup(){
           global $currentUser; 
+          if( $currentUser ){
+            header("Location: ".FOLDER."/");
+          }
           require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/user/signup.php");
 
         }
@@ -35,9 +38,6 @@
           require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/user/login.php");
 
         }
-
-
-
 
     }
 

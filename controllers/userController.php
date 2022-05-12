@@ -49,7 +49,21 @@
             try {
                 
                 $user = User::login(); // User Object()
+                header("Location: ".FOLDER."/");
+            } catch (\Throwable $th) {
                 
+                print_r($th->getMessage());
+            }
+        }
+
+
+        public function logout(){
+            try {
+                global $currentUser;
+                if( $currentUser ){
+                    $currentUser->logout();
+                }
+                header("Location: ".FOLDER."/");
             } catch (\Throwable $th) {
                 
                 print_r($th->getMessage());

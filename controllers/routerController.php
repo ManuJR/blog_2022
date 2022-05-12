@@ -45,6 +45,10 @@
                 $userController->login();
             }
 
+            if( $this->method == "POST" && $this->uri == "/logout" ){
+                $userController->logout();
+            }
+
 
 
             // /user/:id

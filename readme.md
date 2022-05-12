@@ -175,3 +175,29 @@ GET /user/56
         Filtrado de artículos en la home en base a categorías
         Buscador de artículos
         Listado de artículos favoritos...
+
+
+
+
+
+
+
+
+
+
+# BLOG
+
+Un usuario tiene que estar registrado y logueado para escribir un artículo
+Un usuario puede escribir muchos artículos. Un artículo lo escribe un usuario
+Un artículo tiene al menos título, un texto largo, un autor que lo escribe y una imagen (de portada), y creado en ( categorías, subtítulo... )
+Un usuario puede tener un email, password, nombre, apellidos, imagen.... 
+
+
+## Comentarios
+Un comentario lo realiza un usuario (logueado? no logueado?) en un artículo
+Un artículo tiene muchos Comentarios
+Fecha de creación, el comentario, nick? 
+
+
+
+
