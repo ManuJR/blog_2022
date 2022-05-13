@@ -4,6 +4,9 @@
     align-items: center;
     padding-bottom: 50px;
 }
+.page{
+    padding-top: 30px;
+}
 .post img{
     max-width: 500px;
 }

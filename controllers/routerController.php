@@ -52,17 +52,26 @@
 
 
 
-            // /user/:id
+            // GET /user/:id
             if( $this->method == "GET" && preg_match("/^\/user\/[0-9]+$/i", $this->uri) ){
                 $id = str_replace("/user/", "", $this->uri);
                 $userController->show( $id );
 
             }
 
-            // /article/:id
+            // GET /article/:id
             if( $this->method == "GET" && preg_match("/^\/article\/[0-9]+$/i", $this->uri) ){     
                 $id = str_replace("/article/", "", $this->uri);
                 $articleController->show( $id );
+            }
+            // GET /article/new
+            if( $this->method == "GET" && $this->uri=="/article/new" ){     
+                $articleController->new();
+            }
+
+            if( $this->method == "POST" && $this->uri=="/article" ){     
+                print_r($_POST);
+                echo "Creación de artículos";
             }
 
         }
