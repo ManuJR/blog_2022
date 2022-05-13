@@ -18,7 +18,8 @@
            
             $webController = new WebController();
             $userController = new UserController();
-            
+            $articleController = new ArticleController();
+
             if( $this->method == "GET" && ( $this->uri == "/" || $this->uri == "/home") ){
                 $webController->index();
             }
@@ -56,6 +57,12 @@
                 $id = str_replace("/user/", "", $this->uri);
                 $userController->show( $id );
 
+            }
+
+            // /article/:id
+            if( $this->method == "GET" && preg_match("/^\/article\/[0-9]+$/i", $this->uri) ){     
+                $id = str_replace("/article/", "", $this->uri);
+                $articleController->show( $id );
             }
 
         }

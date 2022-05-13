@@ -149,7 +149,7 @@
         public static function isLogged(){
             session_start();
             if( isset( $_SESSION['id']) ){
-        
+               
                 $user = new User( $_SESSION );
                 return $user;
             }

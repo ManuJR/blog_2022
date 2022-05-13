@@ -10,26 +10,26 @@
 </head>
 <body>
 <?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/navigator.php");
+	require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/navigator.php");
 
 	?>
 
 	<!-- POST -->
 	<div class="container page post">
 		<div class="row justify-content-center">
-			<span>3/6/2021</span>
+			<span><?= $article->created_at  ?></span>
 		</div>
 
 		
 			<img src="/assets/imgs/blog_default.png">
 		
 
-			<h1>Título del artículo</h1>
+			<h1><?= $article->title  ?></h1>
 			<div class="body_post">
-				<p>Texto del artículo</p>
+				<p><?= $article->description  ?></p>
 			</div>
 		<div class="row justify-content-end">
-			<div class="col-6">
+			<div class="col-12">
 				Autor: Pepe
 			</div>
 			
@@ -38,7 +38,7 @@
 
 	<!-- FOOTER -->
 	<?php
-	require_once($_SERVER['DOCUMENT_ROOT']."/modules/footer.php");
+	require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/footer.php");
 
 	?>
 </body>

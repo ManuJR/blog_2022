@@ -85,3 +85,12 @@ Categorías
 3. Modelar BBDD --> 
 4.  
 
+
+
+1. Vista de artículo GET /article/:id
+        - Ruta en RouterController
+        - Controlador ArticleController
+    - Método show en ArticleController
+    - Modelo Article
+    - Método findByID en clase Article
+

@@ -10,11 +10,13 @@
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/controllers/routerController.php");
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/controllers/userController.php");
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/controllers/webController.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/controllers/articleController.php");
     
     // Modelos
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/models/dbconnection.class.php");
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/models/user.class.php");
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/models/session.class.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/models/article.class.php");
     
 
 /*  // Archivo de Configuración y carga de ficheros
