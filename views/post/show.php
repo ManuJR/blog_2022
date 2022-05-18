@@ -11,8 +11,7 @@
 <body>
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/navigator.php");
-
-	?>
+?>
 
 	<!-- POST -->
 	<div class="container page post">

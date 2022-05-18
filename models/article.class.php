@@ -43,6 +43,55 @@
 
         }
 
+        public static function create(){
+            // validación de campos
+            self::validateFields($_POST);
+            // conexión
+            global $connection;
+            
+            extract($_POST);
+
+            global $currentUser;
+            $user_id = $currentUser->id;
+
+            // query 
+            $query = "INSERT INTO article(`title`, `description`, `user_id`) VALUES ('$title', '$description', '$user_id')";
+           
+            // ejecutar query
+            $ex_q = $connection->query($query);
+
+            // errores
+            if( $connection->error ){
+                throw new Exception( "Error al crear artículo: ". $connection->error );
+            }
+            // recoger id 
+            $article_id = $connection->insert_id;
+            // devolver id
+            return $article_id;
+
+        }
+
+        private static function validateFields($params){
+            global $currentUser;
+            print_r($params);
+            if( !$currentUser ){
+                throw new Exception("No hay usuario logueado");
+            }
+            if(!isset($params['title']) || empty($params['title'])){
+                throw new Exception("El campo título está vacío");
+            }
+            if(!isset($params['description']) || empty($params['description'])){
+                throw new Exception("El campo descripción está vacío");
+            }
+            if( strlen($params['title']) < 6 ){
+                throw new Exception("El título tiene que tener al menos 6 caracteres");
+            }
+            if( strlen($params['description']) < 40 ){
+                throw new Exception("El artículo tiene que tener al menos 40 caracteres");
+            }
+            
+        }
+
     }
 
 ?>

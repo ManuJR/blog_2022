@@ -70,8 +70,7 @@
             }
 
             if( $this->method == "POST" && $this->uri=="/article" ){     
-                print_r($_POST);
-                echo "Creación de artículos";
+               $articleController->create();
             }
 
         }

@@ -14,7 +14,9 @@
 		<?php 
 			}else{
 		?>
-
+				<li class="nav-item">
+					<a class="btn btn-success" href="<?= FOLDER ?>/article/new">Nuevo artículo</a>
+				</li>
 				<li class="nav-item">
 					<a class=" btn btn-outline-light" href="<?= FOLDER ?>/profile"> <?= $currentUser->email ?> </a>
 				</li>

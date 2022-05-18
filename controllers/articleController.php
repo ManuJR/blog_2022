@@ -31,6 +31,18 @@
                 //throw $th;
             }
         }   
+
+        public function create(){
+            try {
+                $article_id = Article::create();
+                // redirigir a vista de artículo
+                header("Location:".FOLDER."/article/$article_id");
+
+            } catch (\Throwable $th) {
+
+               print_r( $th );
+            }
+        }
     }
 
 ?>
