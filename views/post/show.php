@@ -18,11 +18,7 @@
 		<div class="row justify-content-center">
 			<span><?= $article->created_at  ?></span>
 		</div>
-
-		
 			<img src="/assets/imgs/blog_default.png">
-		
-
 			<h1><?= $article->title  ?></h1>
 			<div class="body_post">
 				<p><?= $article->description  ?></p>

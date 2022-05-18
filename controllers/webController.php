@@ -10,6 +10,9 @@
 
         public function index(){
           global $currentUser;
+          // pedir últimos artículos
+          $articles = Article::list();
+
           require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/web/home.php");
 
         }

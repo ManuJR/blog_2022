@@ -43,12 +43,20 @@
 
         }
 
+        public function shortDescription(){
+            return substr( $this->description, 0, 100 )."...";
+        }
+        
+        public function getImage(){
+            return $this->image ? $this->image : FOLDER."/assets/imgs/blog_default.png";
+        }
+
         public static function create(){
             // validación de campos
             self::validateFields($_POST);
             // conexión
             global $connection;
-            
+
             extract($_POST);
 
             global $currentUser;
@@ -68,6 +76,31 @@
             $article_id = $connection->insert_id;
             // devolver id
             return $article_id;
+
+        }
+
+        public static function list(){
+    
+            // conexión
+            global $connection;
+            // query
+            $query = "SELECT * FROM article WHERE 1 ORDER BY created_at DESC";
+            // ejecutar query
+            $ex_q = $connection->query($query);
+            // error?
+            if( $connection->error ){
+                throw new Exception( "Error al listar artículos: ". $connection->error );
+            }
+            // recoger datos en array
+            $articles_bbdd = $ex_q->fetch_all(MYSQLI_ASSOC);
+
+            $articles = [];
+            // transformar array en array de Article()
+            foreach ($articles_bbdd as $article) {
+                array_push($articles, new Article( $article ));
+            }
+            // devolver datos
+            return $articles;
 
         }
 

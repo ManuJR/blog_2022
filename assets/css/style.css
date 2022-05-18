@@ -14,3 +14,12 @@
 .post .body_post p{
     white-space: pre-wrap;
 }
+
+/* HOME */
+.articles{
+    display: flex;
+    flex-wrap: wrap;
+}
+.articles .card{
+    margin: 10px;
+}
