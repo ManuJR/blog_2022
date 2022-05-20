@@ -43,6 +43,18 @@
                print_r( $th );
             }
         }
+
+        public function edit_view( $id ){
+            try {
+                // pedir artículo
+                $article = Article::getById( $id );
+                print_r($article);
+                // cargar vista de artículo
+            } catch (\Throwable $th) {
+
+               print_r( $th );
+            }
+        }
     }
 
 ?>

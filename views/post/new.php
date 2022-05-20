@@ -11,8 +11,7 @@
 <body>
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/navigator.php");
-
-	?>
+?>
 
 	<!-- POST -->
 	<div class="container page">
@@ -40,5 +39,14 @@
 	require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/footer.php");
 
 	?>
+
+<script>
+
+	document.getElementById("title").addEventListener("keyup", function(e) {
+		console.log("tecleo");
+
+	});
+
+</script>
 </body>
 </html>

@@ -201,3 +201,20 @@ Fecha de creación, el comentario, nick?
 
 
 
+
+
+CRUD Articulo
+
+CREACION
+    GET     /article/new        ---> VISTA
+    POST    /article/new        ---> ACCION (meter el artículo en BBDD y redigir a vista)
+
+READ
+    GET     /article/:id        --> ACCION y VISTA (coger artículo :id de la BBDD y cargar vista)
+
+EDICION 
+    GET     /article/edit/:id   --> ACCION y VISTA (coger artículo :id de la BBDD y cargar vista)
+    POST    /article/edit/:id   --> ACCION (Actualizar el artículo en BBDD y redigir a vista)
+    
+BORRADO
+    POST    /article/delete     --> ACCION (Borrar el artículo en BBDD y redigir a home)

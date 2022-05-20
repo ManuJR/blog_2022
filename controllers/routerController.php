@@ -73,6 +73,17 @@
                $articleController->create();
             }
 
+            // GET /article/edit/:id
+            if( $this->method == "GET" && preg_match("/^\/article\/edit\/[0-9]+$/i", $this->uri)){
+                $id = str_replace("/article/edit/", "", $this->uri);
+                $articleController->edit_view( $id );
+             }
+
+            if( $this->method == "POST" && $this->uri="/article/delete"){
+               die("BORRAR Artículo");
+            }
+
+
         }
         
     }
