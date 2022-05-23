@@ -23,10 +23,10 @@
 			<div class="body_post">
 				<p><?= $article->description  ?></p>
 			</div>
-		<div class="row justify-content-end">
+		<div class="row links-actions">
 			<a class="btn btn-warning" href="<?= FOLDER ?>/article/edit/<?= $article->id ?>"> Editar</a>
 
-			<form action="/article/delete" method="POST">
+			<form action="/article/delete/<?= $article->id ?>" method="POST">
 				<button id="btn_delete" class="btn btn-danger" type="submit">Borrar</button>
 			</form>
 		</div>

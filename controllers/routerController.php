@@ -77,10 +77,18 @@
             if( $this->method == "GET" && preg_match("/^\/article\/edit\/[0-9]+$/i", $this->uri)){
                 $id = str_replace("/article/edit/", "", $this->uri);
                 $articleController->edit_view( $id );
-             }
+            }
 
-            if( $this->method == "POST" && $this->uri="/article/delete"){
-               die("BORRAR Artículo");
+             if( $this->method == "POST" && preg_match("/^\/article\/edit\/[0-9]+$/i", $this->uri)){
+                $id = str_replace("/article/edit/", "", $this->uri);
+               
+                $articleController->edit( $id );
+            } 
+
+            if( $this->method == "POST" && preg_match("/^\/article\/delete\/[0-9]+$/i", $this->uri)){
+                $id = str_replace("/article/delete/", "", $this->uri);
+                $articleController->delete( $id );
+                
             }
 
 

@@ -29,5 +29,7 @@
     <?php
 	    require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/footer.php");
 	?>
+
+    <script src="<?= FOLDER ?>/assets/js/functions.js"></script>
 </body>
 </html>

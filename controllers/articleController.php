@@ -46,10 +46,44 @@
 
         public function edit_view( $id ){
             try {
+                global $currentUser;
                 // pedir artículo
                 $article = Article::getById( $id );
-                print_r($article);
                 // cargar vista de artículo
+                require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/post/edit.php");
+
+            } catch (\Throwable $th) {
+
+               print_r( $th );
+            }
+        }
+
+        public function edit( $id ){
+            try {
+                global $currentUser;
+                // actualizar artículo
+                
+                $article_id = Article::update( $id );
+
+                // redirigir al usuario; home? article/3?
+                header("Location: ".FOLDER."/article/$article_id");
+
+            } catch (\Throwable $th) {
+
+               print_r( $th );
+            }
+        }
+
+        public function delete( $id ){
+            try {
+                global $currentUser;
+                //Borrar artículo
+                
+                $article_id = Article::delete( $id );
+
+                echo "borrado";
+               // header("Location: ".FOLDER."/article/$article_id");
+
             } catch (\Throwable $th) {
 
                print_r( $th );

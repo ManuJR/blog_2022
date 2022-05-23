@@ -104,6 +104,70 @@
 
         }
 
+        public static function update( $id ){
+            // validación de campos
+            self::validateFields($_POST);
+            // conexión
+            global $connection;
+
+            extract($_POST);
+
+            global $currentUser;
+            $user_id = $currentUser->id;
+
+            // proteger la edición de un artículo. Un usuario solo puede editar su artículo
+            $article = self::getById( $id );
+
+            if( $article->user_id != $user_id){
+                throw new Exception( "No tienes permiso para editar el artículo" );
+            }
+            // query 
+            $query = "UPDATE `article` SET `title`='$title',`description`='$description' WHERE id = $id";
+    
+            // ejecutar query
+            $ex_q = $connection->query($query);
+
+            // errores
+            if( $connection->error ){
+                throw new Exception( "Error al crear artículo: ". $connection->error );
+            }
+    
+            // devolver id
+            return $id;
+
+        }
+
+
+        public static function delete( $id ){
+  
+            // conexión
+            global $connection;
+
+            extract($_POST);
+
+            global $currentUser;
+            $user_id = $currentUser->id;
+
+            // proteger el borrado de un artículo. Un usuario solo puede editar su artículo
+            $article = self::getById( $id );
+
+            if( $article->user_id != $user_id){
+                throw new Exception( "No tienes permiso para borrar el artículo" );
+            }
+            // query 
+            $query = "DELETE FROM `article` WHERE id=$id";
+    
+            // ejecutar query
+            $ex_q = $connection->query($query);
+
+            // errores
+            if( $connection->error ){
+                throw new Exception( "Error al crear artículo: ". $connection->error );
+            }
+
+        }
+
+
         private static function validateFields($params){
             global $currentUser;
             print_r($params);

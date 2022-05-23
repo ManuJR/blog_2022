@@ -23,3 +23,11 @@
 .articles .card{
     margin: 10px;
 }
+
+/* SHOW Article */
+.links-actions{
+    justify-content: center;
+}
+.links-actions form{
+    margin: 0;
+}

@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem;" data-link="<?= FOLDER ?>/article/<?= $article->id ?>">
     <img class="card-img-top" src="<?= $article->getImage() ?>" alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title"><?= $article->title ?></h5>
