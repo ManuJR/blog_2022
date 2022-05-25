@@ -27,16 +27,41 @@
     
     <?php
 
-        print_r( $articles_result );
+    /*     
+        $paginator = new Paginator($page, $max_page);
 
+       $paginator->printPaginator(); */
     ?>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <?php
+                if( $page > 1 ){
+            ?>
+                <li class="page-item"><a class="page-link" href="<?= FOLDER ?>/news/<?php echo($page-1) ?>">Previous</a></li>
+
+            <?php 
+                }
+
+                for ($i=1; $i <= $max_page; $i++) { 
+                    /*  
+                    $active = "";
+                    if( $page == $i ){
+                        $active = "active";
+                    } 
+                    */
+
+                    $active =   $i == $page ?  "active" : "";
+
+                    echo " <li class='page-item $active'><a class='page-link' href='".FOLDER."/news/$i'>$i</a></li>";
+
+                }
+
+                if( $page < $max_page ){
+            ?>
+                <li class="page-item"><a class="page-link" href="<?= FOLDER ?>/news/<?php echo($page+1) ?>">Next</a></li>
+            <?php 
+                }
+            ?>
         </ul>
     </nav>
 
