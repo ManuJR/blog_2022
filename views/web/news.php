@@ -15,7 +15,7 @@
     <?php
 	    require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/navigator.php");
 	?>
-    <h1 class="text-center"> HOME: Últimos artículos </h1>
+    <h1 class="text-center"> Todos los artículos </h1>
 
     <div class="articles">
         <?php 
@@ -24,6 +24,21 @@
         }
         ?>
     </div>
+    
+    <?php
+
+        print_r( $articles_result );
+
+    ?>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
 
 
     <?php

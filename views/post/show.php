@@ -18,7 +18,7 @@
 		<div class="row justify-content-center">
 			<span><?= $article->created_at  ?></span>
 		</div>
-			<img src="/assets/imgs/blog_default.png">
+			<img src="<?= $article->getImage() ?>">
 			<h1><?= $article->title  ?></h1>
 			<div class="body_post">
 				<p><?= $article->description  ?></p>
@@ -26,7 +26,7 @@
 		<div class="row links-actions">
 			<a class="btn btn-warning" href="<?= FOLDER ?>/article/edit/<?= $article->id ?>"> Editar</a>
 
-			<form action="/article/delete/<?= $article->id ?>" method="POST">
+			<form action="<?= FOLDER ?>/article/delete/<?= $article->id ?>" method="POST">
 				<button id="btn_delete" class="btn btn-danger" type="submit">Borrar</button>
 			</form>
 		</div>

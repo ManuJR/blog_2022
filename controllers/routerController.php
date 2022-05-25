@@ -24,6 +24,12 @@
                 $webController->index();
             }
 
+            // Paginación
+            if( $this->method == "GET" &&  preg_match("/\/news\/[0-9]+$/i", $this->uri ) ){
+                $page = str_replace("/news/", "", $this->uri);
+                $webController->news( $page );
+            }
+
             if( $this->method == "GET" && $this->uri == "/services"){
                 $webController->services(); 
             }

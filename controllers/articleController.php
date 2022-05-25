@@ -36,7 +36,7 @@
             try {
                 $article_id = Article::create();
                 // redirigir a vista de artículo
-                header("Location:".FOLDER."/article/$article_id");
+                // header("Location:".FOLDER."/article/$article_id");
 
             } catch (\Throwable $th) {
 

@@ -17,7 +17,7 @@
 	<div class="container page">
 		<div class="row justify-content-center">
 			<div class="col-6">
-            <form method="post" action="<?= FOLDER ?>/article">
+            <form method="post" action="<?= FOLDER ?>/article" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="text" class="form-control" id="title"  name="title" placeholder="Título del artículo">
                 </div>
@@ -26,7 +26,7 @@
                 </div>
               
                 <button type="submit" class="btn btn-success">Crear</button>
-                </form>
+            </form>
 
             </div>
 		</div>
