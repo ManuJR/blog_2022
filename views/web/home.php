@@ -15,7 +15,7 @@
     <?php
 	    require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/modules/navigator.php");
 	?>
-    <h1 class="text-center"> HOME: Últimos artículos </h1>
+    <h1 class="text-center"> HOME: Últimos artículos :)</h1>
 
     <div class="articles">
         <?php 
