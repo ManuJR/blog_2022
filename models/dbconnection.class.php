@@ -1,18 +1,10 @@
 <?php
     class DBConnection {
-        // DEV
-        
-        private const HOST       = "localhost";
-        private const USER       = "root";
-        private const PASSWORD   = "root";
-        private const BBDD       = "db_proyecto_2022"; 
-       
 
-        // PROD
-        /* private const HOST       = "localhost";
+        private const HOST       = "localhost";
         private const USER       = "mjimenez_blog_2022";
         private const PASSWORD   = "_IFsNPdg8h[O";
-        private const BBDD       = "mjimenez_blog_2022"; */
+        private const BBDD       = "mjimenez_blog_2022";
 
         private $connection;
 
