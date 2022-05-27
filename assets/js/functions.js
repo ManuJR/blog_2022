@@ -1,11 +1,7 @@
 
 var cards = document.querySelectorAll(".card");
 
-// DEV
 const folder = "";
-// PROD
-//const folder = "/blog2022";
-
 
 cards.forEach(function(card){
     card.addEventListener("click", function(){
