@@ -1,6 +1,9 @@
 <?php
   
-  const FOLDER = "";
+  // DEV
+   const FOLDER = "";
+  // PROD
+  //const FOLDER = "/blog2022";
   
   require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/config/ini.php");
   

@@ -1,6 +1,12 @@
 
 var cards = document.querySelectorAll(".card");
-var folder = "";
+
+// DEV
+const folder = "";
+// PROD
+//const folder = "/blog2022";
+
+
 cards.forEach(function(card){
     card.addEventListener("click", function(){
         let url = this.getAttribute('data-link');
@@ -18,7 +24,7 @@ $(document).ready(function(){
 
         // 2. Hacer peticion por AJAX
         $.ajax({
-            url: "/search",
+            url: folder+"/search",
             method: "GET",
             data: {
                 search: search
@@ -34,7 +40,7 @@ $(document).ready(function(){
             $(".articles").html("");
             let articles_html = "";
             articles.forEach( function(article){
-                articles_html += "<div class='card' style='width: 18rem;' data-link='/article/"+article.id+"'><img class='card-img-top' src='/uploads/post_"+article.id+"/"+article.image+"' alt='Card image cap'><div class='card-body'><h5 class='card-title'>"+article.title+"</h5><p class='card-text'>"+article.description.substring(0,100)+"...</p><a href='/article/"+article.id+"' class='btn btn-primary'>Ver</a></div></div>";
+                articles_html += "<div class='card' style='width: 18rem;' data-link='"+folder+"/article/"+article.id+"'><img class='card-img-top' src='"+folder+"/uploads/post_"+article.id+"/"+article.image+"' alt='Card image cap'><div class='card-body'><h5 class='card-title'>"+article.title+"</h5><p class='card-text'>"+article.description.substring(0,100)+"...</p><a href='"+folder+"/article/"+article.id+"' class='btn btn-primary'>Ver</a></div></div>";
             });
             $(".articles").append(articles_html);
 

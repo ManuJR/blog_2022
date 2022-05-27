@@ -30,6 +30,11 @@
 				<button id="btn_delete" class="btn btn-danger" type="submit">Borrar</button>
 			</form>
 		</div>
+
+		<div class="">
+			<a class="btn btn-primary" href="https://trazos.net/"> Link a mi porfolio  </a>
+
+		</div>
 		<div class="row justify-content-end">
 			<div class="col-12">
 				Autor: Pepe
