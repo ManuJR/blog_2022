@@ -49,27 +49,28 @@
         }
         
         public function getImage(){
-            return $this->image ? $this->image : FOLDER."/assets/imgs/blog_default.png";
+            return $this->image ? FOLDER."/uploads/post_".$this->id."/".$this->image : FOLDER."/assets/imgs/blog_default.png";
         }
 
         public static function create(){
             // validación de campos
+            print_r($_FILES);
             self::validateFields($_POST);
 
             // imagen correcta --> Guardamos el articulo con su IMG
 
             // conexión
             global $connection;
-
+            
             extract($_POST);
-            $img = "playa.jpg"; // $_FILES['img']['name']
-
+            $img = $_FILES['cover']['name']; // $_FILES['img']['name']
+            
             global $currentUser;
             $user_id = $currentUser->id;
-
+            
             // query 
-            $query = "INSERT INTO article(`title`, `description`, `user_id`) VALUES ('$title', '$description', '$user_id')";
-           
+            $query = "INSERT INTO article(`title`, `description`, `user_id`, `image`) VALUES ('$title', '$description', '$user_id', '$img')";
+            
             // ejecutar query
             $ex_q = $connection->query($query);
 
@@ -80,7 +81,7 @@
             // recoger id 
             $article_id = $connection->insert_id;
 
-            //self::saveFile();
+            self::saveFile( $article_id );
 
             // devolver id
             return $article_id;
@@ -88,16 +89,21 @@
         }
 
         public static function list( $page = 1 ){
-    
+            // SI TENGO $_GET --> WHERE titulo = $_GET['search']
+
+            $condition = "WHERE 1";
+            if( isset($_GET['search']) && !empty($_GET['search']) ){
+                $condition = "WHERE title LIKE '%".$_GET['search']."%'";
+            }
             // conexión
             global $connection;
             // query
             $offset = ($page - 1) * self::NUM_ITEMS;
-            $query = "SELECT * FROM article WHERE 1 ORDER BY created_at DESC LIMIT ".self::NUM_ITEMS." OFFSET $offset";
+            $query = "SELECT * FROM article $condition ORDER BY created_at DESC LIMIT ".self::NUM_ITEMS." OFFSET $offset";
             // ejecutar query
             $ex_q = $connection->query($query);
 
-            $total_articles = self::count();
+            $total_articles = self::count($condition);
             $total_pages = ceil($total_articles/self::NUM_ITEMS);
 
             // error?
@@ -122,14 +128,51 @@
             return $result;
         }
 
-        public static function count(){
+
+        public static function search( $page = 1 ){
+            // SI TENGO $_GET --> WHERE titulo = $_GET['search']
+
+            $condition = "WHERE 1";
+            if( isset($_GET['search']) && !empty($_GET['search']) ){
+                $condition = "WHERE title LIKE '%".$_GET['search']."%'";
+            }
+            // conexión
             global $connection;
-            $query = "SELECT id FROM article WHERE 1";
+            // query
+            $offset = ($page - 1) * self::NUM_ITEMS;
+            $query = "SELECT * FROM article $condition ORDER BY created_at DESC LIMIT ".self::NUM_ITEMS." OFFSET $offset";
+            // ejecutar query
+            $ex_q = $connection->query($query);
+
+            $total_articles = self::count($condition);
+            $total_pages = ceil($total_articles/self::NUM_ITEMS);
+
+            // error?
+            if( $connection->error ){
+                throw new Exception( "Error al listar artículos: ". $connection->error );
+            }
+            // recoger datos en array
+            $articles_bbdd = $ex_q->fetch_all(MYSQLI_ASSOC);
+
+
+            // devolver datos
+            $result = [
+                "data" => $articles_bbdd,
+                "count" => $total_articles,
+                "max_page" => $total_pages
+            ];
+            
+            return $result;
+        }
+
+        public static function count($condition){
+            global $connection;
+            $query = "SELECT id FROM article $condition";
             $ex_q = $connection->query($query);
             if( $connection->error ){
                 throw new Exception( "Error al contar artículos: ". $connection->error );
             }
-            print_r( $ex_q);
+            
             return $ex_q->num_rows;
         }
 
@@ -196,6 +239,12 @@
 
         }
 
+        public function getComments(){
+            // preguntar a BBDD por comentarios de article_id = this->id del
+
+            // return Array de Comments
+
+        }
 
         private static function validateFields($params){
             global $currentUser;
@@ -216,20 +265,38 @@
                 throw new Exception("El artículo tiene que tener al menos 40 caracteres");
             }
 
-            // VAlidar $_FILES
-            // si viene $_FILES['img'] ---> png? jpg? gif?
-            
+            if( isset($_FILES['cover']) && 
+                !empty($_FILES['cover']['name']) &&
+                $_FILES['cover']['type'] != "image/webp" && 
+                $_FILES['cover']['type'] != "image/gif" && 
+                $_FILES['cover']['type'] != "image/jpeg" && 
+                $_FILES['cover']['type'] != "image/png"
+            ){
+                throw new Exception("La imagen no tiene el formato adecuado");
+            }
         }
 
 
         private static function saveFile( $id ){
-            // Guardar IMAGEN EN uploads
-                // crear carpeta /uploads/post_23 --->  mkdir()
+            if( isset($_FILES['cover']) && !empty($_FILES['cover']['name']) ){
+                // Guardar IMAGEN EN uploads
+                    // crear carpeta /uploads/post_23 --->  mkdir()
+                $dir = $_SERVER['DOCUMENT_ROOT'].FOLDER."/uploads";
+                echo $dir;
+                if( !file_exists( $dir ) ){
+                    mkdir( $dir );
+                }
+                $dir .= "/post_$id";
+                if( !file_exists( $dir ) ){
+                    mkdir( $dir );
+                }
 
-                $origen = $_FILES['img']['tmp'];
-                $destino = "carpetafinal/".$_FILES['img']['name'];
+                // $dir existe 
+                $origen = $_FILES['cover']['tmp_name'];
+                $destino = $dir."/".$_FILES['cover']['name']; 
                 // Guardar archivo en /uploads/post_23  --> move_uploaded_file( origen, destino/nommbre.jpg )
-
+                move_uploaded_file( $origen, $destino );
+            }
         }
 
     }

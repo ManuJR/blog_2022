@@ -21,6 +21,9 @@
                 <div class="form-group">
                     <input type="text" class="form-control" id="title"  name="title" placeholder="Título del artículo">
                 </div>
+				<div class="form-group">
+                    <input type="file" class="form-control" id="cover"  name="cover">
+                </div>
                 <div class="form-group">
                   <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
                 </div>

@@ -12,6 +12,7 @@
 
                 // Pedimos datos al modelo
                 $article = Article::getById( $id );
+                $comments = $article->getComments();
                 // Cargamos vista
                 require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/views/post/show.php");
                
@@ -36,7 +37,7 @@
             try {
                 $article_id = Article::create();
                 // redirigir a vista de artículo
-                // header("Location:".FOLDER."/article/$article_id");
+                header("Location:".FOLDER."/article/$article_id");
 
             } catch (\Throwable $th) {
 
@@ -89,6 +90,24 @@
                print_r( $th );
             }
         }
+
+        public function search(){
+            // buscar artículos y devolverlos con print_r
+            try {
+                // $data = Article::list(); // data -> ARRAY [Objetos]
+
+                $data = Article::search();
+
+                $response = json_encode($data);
+                print_r($response);
+
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+
+
+        }
+
     }
 
 ?>

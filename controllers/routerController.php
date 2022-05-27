@@ -10,7 +10,7 @@
         public function __construct(){
             $this->method   =   $_SERVER['REQUEST_METHOD'];
             $this->uri      =   str_replace( FOLDER, "",  $_SERVER['REQUEST_URI']); 
-      
+            $this->uri      =   str_replace( "?".$_SERVER["QUERY_STRING"], "", $this->uri); 
         }
 
       
@@ -56,13 +56,10 @@
                 $userController->logout();
             }
 
-
-
             // GET /user/:id
             if( $this->method == "GET" && preg_match("/^\/user\/[0-9]+$/i", $this->uri) ){
                 $id = str_replace("/user/", "", $this->uri);
                 $userController->show( $id );
-
             }
 
             // GET /article/:id
@@ -95,6 +92,11 @@
                 $id = str_replace("/article/delete/", "", $this->uri);
                 $articleController->delete( $id );
                 
+            }
+
+            // Búsqueda de artículos
+            if( $this->method == "GET" && $this->uri=="/search" ){     
+                $articleController->search();
             }
 
 

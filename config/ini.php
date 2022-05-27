@@ -11,6 +11,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/controllers/userController.php");
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/controllers/webController.php");
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/controllers/articleController.php");
+    require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/controllers/commentController.php");
     
     // Modelos
     require_once($_SERVER['DOCUMENT_ROOT'].FOLDER."/models/dbconnection.class.php");
