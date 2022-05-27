@@ -13,10 +13,7 @@
 
   // se va a encargar de analizar Rutas y hacer cosas en consecuencia
   $rc = new RouterController();
- /*  print_r($rc);
-  echo "<br>";
-  echo "<br>";
-  echo "<br>"; */
+
   $rc->manageUris();
     
 
